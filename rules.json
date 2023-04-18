@@ -1,0 +1,11 @@
+{
+  "rules": {
+    ".app": "Android apps",
+    ".iso": "System images",
+    ".jpeg": "Images",
+    ".jpg": "Images",
+    ".txt": "Documents",
+    ".docx": "Documents",
+    ".dox": "Documents"
+  }
+}
