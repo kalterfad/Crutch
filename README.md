@@ -50,7 +50,7 @@ Service restart:
 make restart
 ```
 Service status:
-```shell
+```sh
 make status
 ```
 Removing and disabling the service:
