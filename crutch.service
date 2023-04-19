@@ -1,9 +1,0 @@
-[Unit]
-Description=Crutch service
-
-[Service]
-ExecStart=/usr/local/bin/service-crutch
-Restart=always
-
-[Install]
-WantedBy=multi-user.target

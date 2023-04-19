@@ -2,7 +2,7 @@
 
 all: program
 
-program: dependencies client service install
+program: client service install
 
 dependencies: go.mod
 	go mod download
@@ -23,14 +23,25 @@ install: client service
 	sudo mv service-crutch /usr/local/bin/
 	echo "move client, service, create .crutch"
 
-.PHONY: systemd
-systemd: service
+.PHONY: enable
+enable:
+	./service.sh
 	sudo cp crutch.service /etc/systemd/system/
+	systemctl daemon-reload
 	sudo systemctl enable crutch.service
+
+.PHONY: disable
+disable:
+	sudo systemctl disable crutch.service
+	sudo rm /etc/systemd/system/crutch.service
 
 .PHONY: start
 start:
 	sudo systemctl start crutch.service
+
+.PHONY: status
+status:
+	sudo systemctl status crutch.service
 
 .PHONY: stop
 stop:
@@ -44,5 +55,6 @@ restart:
 clean:
 	sudo rm -rf /usr/local/bin/crutch
 	sudo rm -rf /usr/local/bin/service-crutch
+	sudo systemctl disable crutch.service
 	sudo rm -rf /etc/systemd/system/crutch.service
 	sudo rm -rf $(HOME)/.crutch
